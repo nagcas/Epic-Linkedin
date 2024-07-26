@@ -5,6 +5,7 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 // Componente per eliminare un'esperienza lavorativa
 function DeleteExperience({ authorLogin, experience, fetchExperiences }) {
+
   // URL per l'API di eliminazione dell'esperienza
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const url = `${API_URL}/profile/${authorLogin._id}/experiences/${experience._id}`;
@@ -16,8 +17,6 @@ function DeleteExperience({ authorLogin, experience, fetchExperiences }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  // Token di autenticazione per l'API
-  //  const Token = process.env.TOKEN;
 
   // Funzione per gestire l'eliminazione dell'esperienza
   const handleElimina = async () => {

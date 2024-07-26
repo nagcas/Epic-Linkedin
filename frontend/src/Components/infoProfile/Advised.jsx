@@ -2,6 +2,7 @@ import { Col, Container, ProgressBar, Row } from 'react-bootstrap';
 
 // Componente per visualizzare i consigli personalizzati per il profilo utente
 function Advised() {
+  
   return (
     <>
       {/* Contenitore principale per la sezione dei consigli */}

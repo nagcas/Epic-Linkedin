@@ -8,49 +8,36 @@ import OtherProfile from './Pages/OtherProfile';
 import NotFound from './Pages/NotFound';
 import MyFooter from './Components/MyFooter';
 import Login from './Pages/Login';
-import {AuthProvider} from './Context/AuthProvider'
+import { AuthProvider } from './Context/AuthProvider'
 import Register from './Pages/Register';
 import Home from './Pages/Home';
 
 function App() {
-  // const token = process.env.TOKEN;
-  // console.log(token)
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [authorLogin, setAuthorLogin] = useState(null);
-
-  useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      setIsLoggedIn(true);
-      // Carica i dati dell'utente qui se necessario
-    }
-  }, []);
 
   return (
-    <AuthProvider value={{ isLoggedIn, setIsLoggedIn, authorLogin, setAuthorLogin }}>
+    <AuthProvider>
       <Router>
         <Navbar />
         <Routes>
-            <Route 
-              path='/' 
-              element={<Login />} 
-            />
-          <Route
-              path='/profile/:_id'
-              element={<OtherProfile />}
-            />
-            <Route
-            path='*'
-            element={<NotFound/>}
+          <Route 
+            path='/' 
+            element={<Login />} 
           />
-           <Route
+          <Route 
+            path='/home' 
+            element={<Home />} 
+          />
+          <Route
+            path='/profile/:_id'
+            element={<OtherProfile />}
+          />
+          <Route
             path='/register'
             element={<Register />}
           />
-          <Route 
-           path='/home' 
-           element={<Home />} 
+          <Route
+            path='*'
+            element={<NotFound/>}
           />
           </Routes>
         </Router>

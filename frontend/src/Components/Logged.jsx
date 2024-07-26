@@ -11,8 +11,12 @@ export default function Logged() {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  const { authorLogin, setAuthorLogin } = useContext(AuthContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { 
+    isLoggedIn, 
+    setIsLoggedIn, 
+    authorLogin, 
+    setAuthorLogin 
+  } = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -52,11 +56,11 @@ export default function Logged() {
 
   useEffect(() => {
     // Funzione per recuperare i dati dell'autore loggato
-    const fetchAuthor = async () => {
+    const fetchProfile = async () => {
       try {
         // Richiedi i dati dell'autore utilizzando il token di autenticazione
         const userData = await fetchWithAuth(`${API_URL}/auth/me`);
-        await  setAuthorLogin(userData); // Aggiorna il contesto dell'autore con i dati ricevuti
+        setAuthorLogin(userData); // Aggiorna il contesto dell'autore con i dati ricevuti
       } catch (error) {
         // Se c'è un errore nel recupero dei dati, mostra un errore e reindirizza alla pagina di login
         console.error('Errore nel recupero dei dati utente:', error);
@@ -66,9 +70,9 @@ export default function Logged() {
 
     // Recupera i dati dell'autore solo se l'utente è loggato
     if (isLoggedIn) {
-      fetchAuthor();
+      fetchProfile();
     }
-  }, [isLoggedIn, navigate, setAuthorLogin]);
+  }, [isLoggedIn, navigate, setAuthorLogin, API_URL]);
 
   // Funzione per gestire il logout dell'utente
   const handleLogout = () => {

@@ -4,6 +4,7 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { AuthContext } from '../Context/AuthContext';
 
 export default function Login() {
+
   const [login, setLogin] = useState({
     email: '',
     password: '',
@@ -14,7 +15,7 @@ export default function Login() {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  const { setIsLoggedIn, setAuthorLogin } = useContext(AuthContext);
+  const { setAuthorLogin } = useContext(AuthContext);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -45,17 +46,17 @@ export default function Login() {
 
       const data = await response.json();
 
-      const userResponse = await fetch(`${API_URL}/auth/me`, {
-        headers: {
-          'Authorization': `Bearer ${data.token}`
-        }
-      });
-      const userData = await userResponse.json();
-      setAuthorLogin(userData);
+      // const userResponse = await fetch(`${API_URL}/auth/me`, {
+      //   headers: {
+      //     'Authorization': `Bearer ${data.token}`
+      //   }
+      // });
+      // const userData = await userResponse.json();
+      // setAuthorLogin(userData);
 
       localStorage.setItem('token', data.token);
 
-      window.dispatchEvent(new Event('login'));
+      window.dispatchEvent(new Event('storage'));
       alert('Login effettuato');
       setTimeout(() => {
         navigate('/home');

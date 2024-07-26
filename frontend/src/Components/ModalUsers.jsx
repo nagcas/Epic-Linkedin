@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 // Definisce il componente ModalUsers che riceve i profili come prop
 function ModalUsers({ profiles }) {
+  
   // Stato per controllare la visibilità del modal
   const [show, setShow] = useState(false);
 

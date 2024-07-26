@@ -25,16 +25,18 @@ function Profile() {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-
-  const { authorLogin, setAuthorLogin } = useContext(AuthContext);
-  const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
+  const { 
+    isLoggedIn, 
+    authorLogin, 
+    setAuthorLogin 
+  } = useContext(AuthContext);
   
   //console.log(authorLogin._id);
   useEffect(() => {
     const fetchUserData = async () => {
       if (isLoggedIn) {
         try {
-          const userData = await fetchWithAuth(`${API_URL}}/auth/me`);
+          const userData = await fetchWithAuth(`${API_URL}/auth/me`);
           setAuthorLogin(userData);
         } catch (error) {
           console.error('Errore nel recupero dei dati utente:', error);

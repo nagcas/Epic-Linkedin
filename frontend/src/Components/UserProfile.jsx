@@ -20,15 +20,11 @@ import UpdateProfile from './UpdateProfile';
 function UserProfile() {
   // Utilizza useParams per ottenere i parametri dell'URL
   const params = useParams();
-  // console.log(params.user); // Debug: stampa i parametri dell'utente
+
 
   // URL dell'API per la lettura dei profili
-
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
-  //const url = 'http://localhost:5000/profile/';
 
-  // Recupero il token di autorizzazione
-  // const Token = process.env.TOKEN;
 
   // Definizione degli stati locali
   const [profile, setProfile] = useState([]);

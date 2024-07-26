@@ -6,7 +6,7 @@ import { authMiddleware } from '../middleware/authMiddleware.js';
 
 const router = express.Router(); // Crea un'istanza di Express.Router
 
- // NEW! Proteggi le altre rotte con il middleware di autenticazione
+ // Proteggi le altre rotte con il middleware di autenticazione
  router.use(authMiddleware);
 
 // mostra tutte le esperienze di un singolo utente

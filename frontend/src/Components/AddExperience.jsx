@@ -4,13 +4,11 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 // Componente per aggiungere una nuova esperienza lavorativa
 function AddExperience({ authorLogin, fetchExperiences }) {
+  
   // Stato per controllare la visibilità del modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
-
-  // Token di autenticazione per l'API
-  // const Token = process.env.TOKEN;
 
   // URL per l'API di aggiunta esperienza
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';

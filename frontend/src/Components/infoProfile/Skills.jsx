@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 // Componente per visualizzare le competenze dell'utente
 function Skills({ login }) {
+  
   return (
     <>
     {/* Contenitore principale per la sezione delle competenze */}

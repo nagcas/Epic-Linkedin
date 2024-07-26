@@ -15,8 +15,6 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
     return null;
   }
 
-  // Recupera il token di autorizzazione dalle variabili d'ambiente
-  // const Token = process.env.TOKEN;
   // URL dell'API per aggiornare il profilo
   const url = `${API_URL}/profile/${authorLogin._id}`;
   // Definizione degli stati locali

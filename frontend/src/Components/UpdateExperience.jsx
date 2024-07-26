@@ -6,13 +6,8 @@ import { Form, Modal } from 'react-bootstrap';
 // import { format } from 'date-fns';
 import fetchWithAuth from '../services/fetchWithAuth';
 
-function UpdateExperience({ authorLogin, experience, fetchExperiences }) {
-  // Stampa l'esperienza attuale nella console
- // console.log('La mia esperienza: ', experience);
 
-  // Recupera il token di autorizzazione dalle variabili d'ambiente
-  //const Token = process.env.TOKEN;
-  // URL dell'API per aggiornare l'esperienza
+function UpdateExperience({ authorLogin, experience, fetchExperiences }) {
 
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 

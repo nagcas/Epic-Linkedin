@@ -12,6 +12,7 @@ import Logged from './Logged';
 import { AuthContext } from '../Context/AuthContext';
 
 export default function LinkedInNavbar() {
+  
   const { isLoggedIn, authorLogin } = useContext(AuthContext);
 
   return (

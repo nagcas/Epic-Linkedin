@@ -2,6 +2,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 // Componente funzionale per il footer del sito
 export default function MyFooter() {
+  
   return (
     <footer>
       <Container>

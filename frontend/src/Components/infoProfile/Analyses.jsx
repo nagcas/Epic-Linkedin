@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 // Componente per visualizzare le analisi del profilo utente
 function Analyses() {
+  
   return (
     <>
       {/* Contenitore principale per la sezione delle analisi */}

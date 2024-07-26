@@ -2,6 +2,7 @@ import { Col, Container, Row } from 'react-bootstrap';
 
 // Componente per visualizzare l'attività dell'utente
 function Activity({ login }) {
+  
   return (
     <>
       {/* Contenitore principale per la sezione delle attività */}
