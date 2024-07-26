@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { Modal, Card, ListGroup, Button } from 'react-bootstrap';
+import { Modal, Card, ListGroup } from 'react-bootstrap';
 
 // Componente per visualizzare i dettagli di un'esperienza lavorativa in un modal
 function ModalExperience({ experience }) {

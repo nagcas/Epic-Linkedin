@@ -7,7 +7,7 @@ import {
   InputGroup,
   NavDropdown,
 } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Logged from './Logged';
 import { AuthContext } from '../Context/AuthContext';
 

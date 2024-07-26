@@ -1,8 +1,8 @@
-import React, { useContext } from "react"; // Importa la libreria React
+import React from 'react'; // Importa la libreria React
 import { Col, Container, Row } from "react-bootstrap"; // Importa i componenti necessari da react-bootstrap
 
-import Profile from "../Components/Profile"; // Importa il componente Profile
-import AsideDx from "../Components/AsideDx"; // Importa il componente AsideDx
+import Profile from '../Components/Profile'; // Importa il componente Profile
+import AsideDx from '../Components/AsideDx'; // Importa il componente AsideDx
 
 // Definisce il componente Home come esportazione predefinita
 export default function Home() {
