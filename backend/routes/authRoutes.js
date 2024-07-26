@@ -6,6 +6,9 @@ import passport from '../config/passportConfig.js';
 
 
 const router = express.Router();
+
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
+
 // POST /login => restituisce token di accesso
 router.post('/login', async (req, res) => {
   try {
@@ -41,8 +44,6 @@ router.get('/me', authMiddleware, (req, res) => {
     res.status(500).json({ message: 'Errore nel server' });
   }
 });
-
-const FRONTEND_URL = import.meta.env.FRONTEND_URL || 'http://localhost:5000';
 
 router.get( "/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 

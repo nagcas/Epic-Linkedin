@@ -59,9 +59,6 @@ router.get("/", async (req, res) => {
 
   
 
-
-
-
 // Rotta per ottenere un singolo Post
 router.get("/:id", async (req, res) => {
   try {
@@ -74,9 +71,6 @@ router.get("/:id", async (req, res) => {
     res.status(500).json({ message: err.message }); // Gestisce errori e risponde con un messaggio di errore
   }
 });
-
-
-
 
 
 // Rotta per aggiornare un il profilo
