@@ -64,9 +64,4 @@ router.get('/google/callback',
   handleAuthCallback
 );
 
-// Middleware per gestire le rotte non trovate
-router.use((req, res, next) => {
-  res.status(404).json({ error: 'Resource not found...', message: 'The requested resource was not found...' });
-});
-
 export default router;
