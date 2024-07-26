@@ -9,6 +9,17 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 const router = express.Router();
 
 
+// Funzione di callback per gestire il successo dell'autenticazione
+async function handleAuthCallback(req, res) {
+  try {
+    const token = await generateJWT({ id: req.user._id });
+    res.redirect(`${FRONTEND_URL}/?token=${token}`);
+  } catch (error) {
+    console.error('Errore nella generazione del token:', error);
+    res.redirect(`${FRONTEND_URL}}/?error=auth_failed`);
+  }
+}
+
 // POST /login => restituisce token di accesso
 router.post('/login', async (req, res) => {
   try {
@@ -45,38 +56,17 @@ router.get('/me', authMiddleware, (req, res) => {
   }
 });
 
-router.get( '/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
+// Rotte di autenticazione con Google
+router.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
-router.get(
-  '/google/callback',
-  // Passport tenta di autenticare l'utente con le credenziali Google
+router.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: `${FRONTEND_URL}/` }),
-  // Se l'autenticazione fallisce, l'utente viene reindirizzato alla pagina di login
-  async (req, res) => {
-    try {
-      // A questo punto, l'utente è autenticato con successo
-      // req.user contiene i dati dell'utente forniti da Passport
-
-      // Genera un JWT (JSON Web Token) per l'utente autenticato
-      // Usiamo l'ID dell'utente dal database come payload del token
-      const token = await generateJWT({ id: req.user._id });
-
-      // Reindirizza l'utente al frontend, passando il token come parametro URL
-      // Il frontend può quindi salvare questo token e usarlo per le richieste autenticate
-      res.redirect(`${FRONTEND_URL}/?token=${token}`);
-    } catch (error) {
-      // Se c'è un errore nella generazione del token, lo logghiamo
-      console.error('Errore nella generazione del token:', error);
-      // E reindirizziamo l'utente alla pagina di login con un messaggio di errore
-      res.redirect(`${FRONTEND_URL}/?error=auth_failed`);
-    }
-  }
+  handleAuthCallback
 );
 
 // Middleware per gestire le rotte non trovate
 router.use((req, res, next) => {
   res.status(404).json({ error: 'Resource not found...', message: 'The requested resource was not found...' });
 });
-
 
 export default router;
