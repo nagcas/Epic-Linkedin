@@ -5,7 +5,7 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 export default function Register() {
   const navigate = useNavigate();
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const url = `${API_URL}/profile/`;
 
   const [register, setRegister] = useState({

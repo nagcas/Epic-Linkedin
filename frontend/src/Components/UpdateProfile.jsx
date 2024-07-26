@@ -7,7 +7,7 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 function UpdateProfile({ authorLogin, onProfileUpdate }) {
   
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   
   // Stampa il profilo attuale nella console
   console.log('Il mio profilo: ', authorLogin);

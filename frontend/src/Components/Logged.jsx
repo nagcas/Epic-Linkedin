@@ -1,15 +1,15 @@
 import React, { useContext } from 'react'
-import {  useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import fetchWithAuth from '../services/fetchWithAuth';
-import { Image, Button, NavLink, NavDropdown } from 'react-bootstrap';
+import { NavDropdown } from 'react-bootstrap';
 import './logged.css';
 import {AuthContext} from '../Context/AuthContext'
 
 
 export default function Logged() {
 
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const { authorLogin, setAuthorLogin } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);

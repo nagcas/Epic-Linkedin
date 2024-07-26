@@ -14,7 +14,7 @@ function UpdateExperience({ authorLogin, experience, fetchExperiences }) {
   //const Token = process.env.TOKEN;
   // URL dell'API per aggiornare l'esperienza
 
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
   const url = `${API_URL}/profile/${authorLogin._id}/experiences/${experience._id}`;
 

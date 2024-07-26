@@ -4,7 +4,7 @@ import '../style/Profile.css';
 import React, { useState, useEffect, useContext } from 'react';
 // Importa i CSS di Bootstrap
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Spinner, Alert, Button } from 'react-bootstrap';
+import { Container, Row, Col, Spinner, Alert } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import ModalUsers from './ModalUsers';
 import fetchWithAuth from '../services/fetchWithAuth';
@@ -13,7 +13,7 @@ import { AuthContext } from '../Context/AuthContext';
 
 const AsideDx = () => {
   // URL per l'API dei profili
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const url = `${API_URL}/profile`;
 
   const { authorLogin, setAuthorLogin } = useContext(AuthContext);

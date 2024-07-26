@@ -6,7 +6,7 @@ import fetchWithAuth from '../services/fetchWithAuth';
 // Componente per eliminare un'esperienza lavorativa
 function DeleteExperience({ authorLogin, experience, fetchExperiences }) {
   // URL per l'API di eliminazione dell'esperienza
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   const url = `${API_URL}/profile/${authorLogin._id}/experiences/${experience._id}`;
 
   // Stato per controllare la visibilità del modal

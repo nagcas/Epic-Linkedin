@@ -24,7 +24,7 @@ function UserProfile() {
 
   // URL dell'API per la lettura dei profili
 
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
   //const url = 'http://localhost:5000/profile/';
 
   // Recupero il token di autorizzazione

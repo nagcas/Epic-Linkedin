@@ -1,7 +1,7 @@
 // Importa lo stile CSS personalizzato
 import '../style/Profile.css';
 
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 // Importa i componenti necessari da react-bootstrap
 import {
   
@@ -23,7 +23,7 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 function Profile() {
 
-  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
 
   const { authorLogin, setAuthorLogin } = useContext(AuthContext);
