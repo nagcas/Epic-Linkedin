@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import ModalUsers from './ModalUsers';
 import fetchWithAuth from '../services/fetchWithAuth';
 import { AuthContext } from '../Context/AuthContext';
+import DefaultImage from '../Assets/default-image.jpg';
 
 
 const AsideDx = () => {
@@ -83,7 +84,7 @@ const AsideDx = () => {
                 <Row className='justify-content-start my-2'>
                   <Col sm={12} lg={3}>
                     <img
-                      src={profile.image}
+                      src={profile && profile.image ? profile.image : DefaultImage}
                       alt={`Foto del profilo di ${profile.username}`}
                       className='rounded-circle me-3'
                       width='48'

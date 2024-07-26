@@ -3,12 +3,7 @@ import '../style/Profile.css';
 
 import React, { useContext, useEffect } from 'react';
 // Importa i componenti necessari da react-bootstrap
-import {
-  
-  Col,
-  Container,
-  Row,
-} from 'react-bootstrap';
+import { Col, Container, Row } from 'react-bootstrap';
 // Importa i componenti per le varie sezioni del profilo utente
 import Advised from './infoProfile/Advised';
 import Analyses from './infoProfile/Analyses';
@@ -20,18 +15,13 @@ import Skills from './infoProfile/Skills';
 import UpdateProfile from './UpdateProfile';
 import { AuthContext } from '../Context/AuthContext';
 import fetchWithAuth from '../services/fetchWithAuth';
+import DefaultImage from '../Assets/default-image.jpg';
 
 function Profile() {
-
   const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 
-  const { 
-    isLoggedIn, 
-    authorLogin, 
-    setAuthorLogin 
-  } = useContext(AuthContext);
-  
-  //console.log(authorLogin._id);
+  const { isLoggedIn, authorLogin, setAuthorLogin } = useContext(AuthContext);
+
   useEffect(() => {
     const fetchUserData = async () => {
       if (isLoggedIn) {
@@ -65,8 +55,8 @@ function Profile() {
         <Row className='profile__image'>
           <img
             className='image__user'
-            src={authorLogin.image}
-            alt={authorLogin.name}
+            src={authorLogin && authorLogin.image ? authorLogin.image : DefaultImage}
+            alt={authorLogin && authorLogin.name ? authorLogin.name : 'User Image'}
           />
         </Row>
         <div className='d-flex justify-content-end '>
@@ -77,34 +67,36 @@ function Profile() {
               onProfileUpdate={handleProfileUpdate}
             />
           )}
-          {/* <button className='upgrade__profile p-0'><i className='fa-solid fa-pen'></i></button> */}
         </div>
         <Row className='user__detail'>
           <Col xs={12} md={8}>
-            <h4 className='name mb-0 justify-content-start mt-5'>
-              {authorLogin.name} {authorLogin.surname}
-            </h4>
-            <p className='my-0 occupation'>{authorLogin.title}</p>
-            <p className='my-0 location text-muted'>
-              {authorLogin.area} •{' '}
-              <span className='connections'>Informazioni di contatto</span>
-            </p>
-
-            <p className='my-2 connections'>5 collegamenti</p>
-            <div className='d-column justify-content-start'>
-              <button className='profile__button open__to__btn mx-3 mt-3'>
-                Disponibile per
-              </button>
-              <button variant='outline-primary' className='add__btn mx-3 mt-3'>
-                Aggiungi sezione profilo
-              </button>
-              <button
-                variant='outline-secondary'
-                className='btn__altro mx-3 mt-3'
-              >
-                Altro
-              </button>
-            </div>
+            {authorLogin && (
+              <>
+                <h4 className='name mb-0 justify-content-start mt-5'>
+                  {authorLogin.name} {authorLogin.surname}
+                </h4>
+                <p className='my-0 occupation'>{authorLogin.title}</p>
+                <p className='my-0 location text-muted'>
+                  {authorLogin.area} •{' '}
+                  <span className='connections'>Informazioni di contatto</span>
+                </p>
+                <p className='my-2 connections'>5 collegamenti</p>
+                <div className='d-column justify-content-start'>
+                  <button className='profile__button open__to__btn mx-3 mt-3'>
+                    Disponibile per
+                  </button>
+                  <button variant='outline-primary' className='add__btn mx-3 mt-3'>
+                    Aggiungi sezione profilo
+                  </button>
+                  <button
+                    variant='outline-secondary'
+                    className='btn__altro mx-3 mt-3'
+                  >
+                    Altro
+                  </button>
+                </div>
+              </>
+            )}
           </Col>
           <Col xs={12} md={4}>
             <ul>
@@ -116,7 +108,6 @@ function Profile() {
                 />
                 Epicode
               </li>
-
               <li className='education'>
                 <img
                   src='https://cdn.stocksnap.io/img-thumbs/960w/woman-developer_HMPNPRBUJ7.jpg'

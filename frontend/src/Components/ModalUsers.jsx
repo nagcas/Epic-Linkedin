@@ -5,6 +5,7 @@ import '../style/ModalUsers.css';
 import { useState } from 'react';
 import { Modal, Container, Row, Col } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import DefaultImage from '../Assets/default-image.jpg';
 
 // Definisce il componente ModalUsers che riceve i profili come prop
 function ModalUsers({ profiles }) {
@@ -42,7 +43,7 @@ function ModalUsers({ profiles }) {
                 <Col md={3}>
                   {/* Immagine del profilo */}
                   <img
-                    src={profile.image}
+                    src={profile && profile.image ? profile.image : DefaultImage}
                     alt={`Foto del profilo di ${profile.name}`}
                     className='rounded-circle me-3'
                     width='50'
