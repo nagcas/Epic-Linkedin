@@ -37,7 +37,7 @@ const corsOptions = {
     // Queste sono gli URL da cui il nostro frontend farà richieste al backend.
     const whitelist = [
       'http://localhost:5173',
-      'https://epic-linkedin-d6g7qh98z-gianlucas-projects-a1335cd1.vercel.app/',
+      'https://epic-linkedin-fzgf.vercel.app/',
       'https://epic-linkedin-s8o9.onrender.com'
     ];
 

@@ -45,12 +45,12 @@ router.get('/me', authMiddleware, (req, res) => {
   }
 });
 
-router.get( "/google", passport.authenticate("google", { scope: ["profile", "email"] }));
+router.get( '/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
 router.get(
-  "/google/callback",
+  '/google/callback',
   // Passport tenta di autenticare l'utente con le credenziali Google
-  passport.authenticate("google", { failureRedirect: "/" }),
+  passport.authenticate('google', { failureRedirect: `${FRONTEND_URL}/` }),
   // Se l'autenticazione fallisce, l'utente viene reindirizzato alla pagina di login
   async (req, res) => {
     try {
@@ -66,7 +66,7 @@ router.get(
       res.redirect(`${FRONTEND_URL}/?token=${token}`);
     } catch (error) {
       // Se c'è un errore nella generazione del token, lo logghiamo
-      console.error("Errore nella generazione del token:", error);
+      console.error('Errore nella generazione del token:', error);
       // E reindirizziamo l'utente alla pagina di login con un messaggio di errore
       res.redirect(`${FRONTEND_URL}/?error=auth_failed`);
     }

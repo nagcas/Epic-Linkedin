@@ -1,7 +1,7 @@
-import passport from "passport";
-import { Strategy as GoogleStrategy } from "passport-google-oauth20";
-import Profile from "../models/profile.js";
-import "dotenv/config";
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import Profile from '../models/profile.js';
+import 'dotenv/config';
 
 // Configuro la strategia di autenticazione Google
 passport.use(
@@ -11,7 +11,7 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       //inserisco URL di reindirizzamento dopo autenticazione
       callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`,
-      scope: ["profile", "email"], // specifica le informazioni che richiediamo a Google (profilo e email)
+      scope: ['profile', 'email'], // specifica le informazioni che richiediamo a Google (profilo e email)
     },
     async (accessToken, refreshToken, profile, done) => {
       try {
