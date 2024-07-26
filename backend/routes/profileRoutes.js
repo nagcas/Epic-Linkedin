@@ -26,8 +26,7 @@ router.post('/', cloudinaryUploader.single('image'), async (req, res) => {
     }
   });
 
- // NEW! Proteggi le altre rotte con il middleware di autenticazione
- router.use(authMiddleware);
+ 
 
 router.get('/', async (req, res) => {
   try {
@@ -57,7 +56,8 @@ router.get('/', async (req, res) => {
   }
 });
 
-  
+// NEW! Proteggi le altre rotte con il middleware di autenticazione
+ router.use(authMiddleware);
 
 // Rotta per ottenere un singolo Post
 router.get('/:id', async (req, res) => {

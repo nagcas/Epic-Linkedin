@@ -1,14 +1,4 @@
 # Clone di Linkedln Project
-## Build Week 4 - React
-
-### Grupo di Lavoro :
-  
-1.  Giuseppe Mazzilli
-2.  Manuel Borrero
-3.  Gianluca Chiaravalloti
-4.  Davide Cardarilli
-5.  Andrea Posca
-6.  Giulia Giudici
 
 ## Descrizione
 

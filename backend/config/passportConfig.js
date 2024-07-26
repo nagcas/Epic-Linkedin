@@ -1,7 +1,7 @@
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 import Profile from '../models/profile.js';
-import 'dotenv/config';
+
 
 // Configuro la strategia di autenticazione Google
 passport.use(
