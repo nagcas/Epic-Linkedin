@@ -42,6 +42,8 @@ router.get('/me', authMiddleware, (req, res) => {
   }
 });
 
+const FRONTEND_URL = import.meta.env.FRONTEND_URL || 'http://localhost:5000';
+
 router.get( "/google", passport.authenticate("google", { scope: ["profile", "email"] }));
 
 router.get(
@@ -60,12 +62,12 @@ router.get(
 
       // Reindirizza l'utente al frontend, passando il token come parametro URL
       // Il frontend può quindi salvare questo token e usarlo per le richieste autenticate
-      res.redirect(`http://localhost:5173/?token=${token}`);
+      res.redirect(`${FRONTEND_URL}/?token=${token}`);
     } catch (error) {
       // Se c'è un errore nella generazione del token, lo logghiamo
       console.error("Errore nella generazione del token:", error);
       // E reindirizziamo l'utente alla pagina di login con un messaggio di errore
-      res.redirect("/?error=auth_failed");
+      res.redirect(`${FRONTEND_URL}/?error=auth_failed`);
     }
   }
 );
