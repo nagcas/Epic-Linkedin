@@ -25,6 +25,7 @@ function Profile() {
 
   const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
 
+
   const { authorLogin, setAuthorLogin } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
   
