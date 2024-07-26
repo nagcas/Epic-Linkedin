@@ -20,15 +20,15 @@ export const generateJWT = (payload) => {
 //  forse mancano le graffe alla promise => verificare
 
 // Funzione per verificare un toker JWT
-export const verifJWT = (token) => {
+export const verifyJWT = (token) => {
   // Restituisce una promiese per gestire l'operazione in modo asincrono
   return new Promise((resolve, reject) =>
     // Utilizzare il metodo verify di jwt per decodificare e verificare il token
-    jwt.verify(token, process.env.JWT_SECRET, (err, payload) => {
+    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       //Callback che gestisce il risultato dell'operazione
       if (err) reject(err);
       // Se c'è un errore (es. token non valido), rifiuta promise
-      else resolve(payload);
+      else resolve(decoded);
       //Altrimenti, risolve la Promise con il Payload
     })
   );

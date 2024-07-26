@@ -17,7 +17,7 @@ import path from 'path'; // UPLOAD: Modulo per gestire i percorsi dei file
 import { fileURLToPath } from 'url'; // UPLOAD Per convertire URL in percorsi di file
 import authRoutes from './routes/authRoutes.js';
 import session  from 'express-session';
-import passport from "./config/passportConfig.js";
+import passport from './config/passportConfig.js';
 
 
 // UPLOAD: Configurazione per utilizzare __dirname in moduli ES
@@ -37,7 +37,7 @@ const corsOptions = {
     // Queste sono gli URL da cui il nostro frontend farà richieste al backend.
     const whitelist = [
       'http://localhost:5173',
-      'https://epic-linkedin-fzgf.vercel.app/',
+      'https://epic-linkedin-fzgf.vercel.app',
       'https://epic-linkedin-s8o9.onrender.com'
     ];
 

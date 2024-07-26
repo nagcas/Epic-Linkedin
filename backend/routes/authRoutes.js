@@ -4,10 +4,10 @@ import { generateJWT } from '../utils/jwt.js';
 import { authMiddleware } from '../middleware/authMiddleware.js';
 import passport from '../config/passportConfig.js';
 
+const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 const router = express.Router();
 
-const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 
 // POST /login => restituisce token di accesso
 router.post('/login', async (req, res) => {
@@ -72,6 +72,11 @@ router.get(
     }
   }
 );
+
+// Middleware per gestire le rotte non trovate
+router.use((req, res, next) => {
+  res.status(404).json({ error: 'Resource not found...', message: 'The requested resource was not found...' });
+});
 
 
 export default router;

@@ -11,7 +11,6 @@ passport.use(
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
       //inserisco URL di reindirizzamento dopo autenticazione
       callbackURL: `${process.env.BACKEND_URL}/auth/google/callback`,
-      scope: ['profile', 'email'], // specifica le informazioni che richiediamo a Google (profilo e email)
     },
     async (accessToken, refreshToken, profile, done) => {
       try {

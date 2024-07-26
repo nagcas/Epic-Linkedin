@@ -16,7 +16,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary: cloudinary,
     params: {
-    folder: 'Last_Build_week22.07.2024',
+    folder: 'epic_linkedin',
     allowedFormats: ['jpg', 'png', 'jpeg', 'gif'],
 }
 });

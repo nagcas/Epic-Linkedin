@@ -22,5 +22,5 @@ const storage = multer.diskStorage({
 // Crea un'istanza di multer con la configurazione dello storage
 const upload = multer({ storage: storage });
 // Esporta il middleware di upload per l'uso in altre parti dell'applicazione
-export default upload
+export default upload;
 

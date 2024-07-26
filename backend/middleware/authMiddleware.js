@@ -1,4 +1,4 @@
-import {verifJWT}  from '../utils/jwt.js';
+import { verifyJWT }  from '../utils/jwt.js';
 import Profile from '../models/profile.js';
 
 // Middeleware per controllare l'autenticazione di un utente
@@ -17,7 +17,7 @@ export const authMiddleware = async (req, res, next) => {
     // Verifica e decodifica il token usando la funzione verifJWT
     // Se il toke è valido, decoded conterrà il payload del token (es. id: '123')
 
-    const decoded = await verifJWT(token);
+    const decoded = await verifyJWT(token);
 
         // Usa l'ID dell'autore dal token per trovare l'autore nel database
     // .select('-password') esclude il campo password dai dati restituiti
