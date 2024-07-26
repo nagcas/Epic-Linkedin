@@ -5,7 +5,8 @@ import fetchWithAuth from '../services/fetchWithAuth';
 
 export default function Register() {
   const navigate = useNavigate();
-  const API_URL = "http://localhost:5000/profile/";
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const url = `${API_URL}/profile/`;
 
   const [register, setRegister] = useState({
     name: '',
@@ -27,10 +28,10 @@ export default function Register() {
     e.preventDefault();
   
     console.log('Dati inviati:', register);
-    alert("Sono pronto a postare i dati");
+    alert('Sono pronto a postare i dati');
 
     try {
-      const result = await fetchWithAuth(API_URL, {
+      const result = await fetchWithAuth(url, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,21 +39,21 @@ export default function Register() {
         body: JSON.stringify(register),
       });
       console.log('Risultato:', result);
-      alert("Registrazione completata con successo!");
+      alert('Registrazione completata con successo!');
       navigate('/');
     } catch (error) {
       console.error('Errore durante la registrazione:', error);
-      alert("Si è verificato un errore durante la registrazione. Riprova.");
+      alert('Si è verificato un errore durante la registrazione. Riprova.');
     }
   };
 
   const handleReset = () => {
     setRegister({
-      name: "",
-      surname: "",
-      email: "",
-      username: "",
-      password: ""
+      name: '',
+      surname: '',
+      email: '',
+      username: '',
+      password: ''
     });
   };
 
@@ -62,18 +63,18 @@ export default function Register() {
     <Col>
       <h2 className='mt-3'>Registra il tuo utente</h2>
       <h5>
-        Sei registrato accedi alla piattaforma{" "}
-        <Link style={{ cursor: "pointer", color: "blue" }} to="/">
+        Sei registrato accedi alla piattaforma{' '}
+        <Link style={{ cursor: 'pointer', color: 'blue' }} to='/'>
           qui
         </Link>
       </h5>
       <Form onSubmit={handleRegisterSubmit}>
-        <InputGroup className="mb-3 mt-5">
+        <InputGroup className='mb-3 mt-5'>
           <Form.Control
-            placeholder="Nome"
-            name="name"
-            aria-label="Nome"
-            aria-describedby="basic-addon1"
+            placeholder='Nome'
+            name='name'
+            aria-label='Nome'
+            aria-describedby='basic-addon1'
             type='text'
             required
             value={register.name}
@@ -81,12 +82,12 @@ export default function Register() {
           />
         </InputGroup>
 
-        <InputGroup className="mb-3">
+        <InputGroup className='mb-3'>
           <Form.Control
-            placeholder="Cognome"
-            name="surname"
-            aria-label="Cognome"
-            aria-describedby="basic-addon2"
+            placeholder='Cognome'
+            name='surname'
+            aria-label='Cognome'
+            aria-describedby='basic-addon2'
             type='text'
             required
             value={register.surname}
@@ -94,12 +95,12 @@ export default function Register() {
           />
         </InputGroup>
 
-        <InputGroup className="mb-3">
+        <InputGroup className='mb-3'>
           <Form.Control
-            placeholder="Email"
-            name="email"
-            aria-label="Email"
-            aria-describedby="basic-addon2"
+            placeholder='Email'
+            name='email'
+            aria-label='Email'
+            aria-describedby='basic-addon2'
             type='email'
             required
             value={register.email}
@@ -107,12 +108,12 @@ export default function Register() {
           />
         </InputGroup>
 
-        <InputGroup className="mb-3">
+        <InputGroup className='mb-3'>
           <Form.Control
-            placeholder="Username"
-            name="username"
-            aria-label="Username"
-            aria-describedby="basic-addon2"
+            placeholder='Username'
+            name='username'
+            aria-label='Username'
+            aria-describedby='basic-addon2'
             type='text'
             required
             value={register.username}
@@ -120,12 +121,12 @@ export default function Register() {
           />
         </InputGroup>
 
-        <InputGroup className="mb-3">
+        <InputGroup className='mb-3'>
           <Form.Control
-            placeholder="Password"
-            name="password"
-            aria-label="password"
-            aria-describedby="basic-addon2"
+            placeholder='Password'
+            name='password'
+            aria-label='password'
+            aria-describedby='basic-addon2'
             type='password'
             required
             onChange={handleRegisterInputChange}
@@ -133,22 +134,22 @@ export default function Register() {
         </InputGroup>
 
         <Button
-          variant="dark"
-          type="submit"
-           className="add__btn mx-3 mt-3"
+          variant='dark'
+          type='submit'
+           className='add__btn mx-3 mt-3'
         >
           Crea Nuovo Utente
         </Button>
         <Button
-          variant="outline-dark"
+          variant='outline-dark'
           onClick={() => handleReset({
-            name: "",
-            surname: "",
-            email: "",
-            username: "",
-            password: ""
+            name: '',
+            surname: '',
+            email: '',
+            username: '',
+            password: ''
           })}
-          className="btn__altro mx-3 mt-3"
+          className='btn__altro mx-3 mt-3'
         > 
           Resetta
         </Button>

@@ -38,7 +38,7 @@ function ModalExperience({ experience }) {
                 Data inizio: {format(new Date(experience.startDate), 'dd/MM/yyyy')}
               </ListGroup.Item>
               <ListGroup.Item>
-                {/* Mostra "Ancora in corso" se non c'è una data di fine */}
+                {/* Mostra 'Ancora in corso' se non c'è una data di fine */}
                 {experience.endDate ? 'Data Fine: ' + format(new Date(experience.endDate), 'dd/MM/yyyy') : 'Ancora in corso'} 
               </ListGroup.Item>
               <ListGroup.Item>Descrizione: {experience.description}</ListGroup.Item>

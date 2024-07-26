@@ -8,9 +8,9 @@ export default function NotFound() {
   return (
     // Utilizza il componente Container di react-bootstrap con una classe CSS 'content'
     <Container className='content'>
-      {/* Intestazione principale con il testo "4🤯4" e la classe CSS 'text-dark' */}
+      {/* Intestazione principale con il testo '4🤯4' e la classe CSS 'text-dark' */}
       <h1 className='text-dark'>4🤯4</h1>
-      {/* Intestazione secondaria con il testo "Opps! Page not found" e la classe CSS 'text-dark' */}
+      {/* Intestazione secondaria con il testo 'Opps! Page not found' e la classe CSS 'text-dark' */}
       <h4 className='text-dark'>Opps! Page not found</h4>
       {/* Paragrafo con un messaggio di scuse e la classe CSS 'text-dark' */}
       <p className='text-dark'>Siamo spiacenti, la pagina che stai cercando non esiste.</p>

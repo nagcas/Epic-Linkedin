@@ -1,10 +1,9 @@
-import { Form, Modal } from "react-bootstrap";
+import { Form, Modal } from 'react-bootstrap';
 import { useState } from 'react';
-import fetchWithAuth from "../services/fetchWithAuth"
+import fetchWithAuth from '../services/fetchWithAuth';
 
 // Componente per aggiungere una nuova esperienza lavorativa
 function AddExperience({ authorLogin, fetchExperiences }) {
-  
   // Stato per controllare la visibilità del modal
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -14,7 +13,8 @@ function AddExperience({ authorLogin, fetchExperiences }) {
   // const Token = process.env.TOKEN;
 
   // URL per l'API di aggiunta esperienza
-  const url = `http://localhost:5000/profile/${authorLogin._id}/experiences`;
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const url = `${API_URL}/profile/${authorLogin._id}/experiences`;
 
   // Stato per i dati del form dell'esperienza
   const [FormDataExperience, setFormDataExperience] = useState({
@@ -31,46 +31,46 @@ function AddExperience({ authorLogin, fetchExperiences }) {
     const { name, value } = e.target;
     setFormDataExperience({
       ...FormDataExperience,
-      [name]: value
+      [name]: value,
     });
   };
 
-  // Invia i dati dell'esperienza all'APIconst 
+  // Invia i dati dell'esperienza all'APIconst
   const sendComment = async () => {
-  try {
-    const response = await fetchWithAuth(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(FormDataExperience),
-    });
+    try {
+      const response = await fetchWithAuth(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(FormDataExperience),
+      });
 
-    console.log(response);
-  
-    // Resetta il form
-    setFormDataExperience({
-      role: '',
-      company: '',
-      startDate: '',
-      endDate: '',
-      description: '',
-      area: '',
-    });
+      console.log(response);
 
-    handleClose();
-    await fetchExperiences(); // Aggiorna la lista delle esperienze
-  } catch (error) {
-    console.error('Errore durante l\'invio del commento:', error);
-    // Qui puoi aggiungere una gestione dell'errore più specifica, come mostrare un messaggio all'utente
-  }
-};
+      // Resetta il form
+      setFormDataExperience({
+        role: '',
+        company: '',
+        startDate: '',
+        endDate: '',
+        description: '',
+        area: '',
+      });
+
+      handleClose();
+      await fetchExperiences(); // Aggiorna la lista delle esperienze
+    } catch (error) {
+      console.error('Errore durante l\'invio del commento:', error);
+      // Qui puoi aggiungere una gestione dell'errore più specifica, come mostrare un messaggio all'utente
+    }
+  };
 
   return (
     <>
       {/* Pulsante per aprire il modal */}
-      <button 
-        variant="primary"
+      <button
+        variant='primary'
         className='add__experiences p-0'
         onClick={handleShow}
       >
@@ -83,60 +83,60 @@ function AddExperience({ authorLogin, fetchExperiences }) {
           <Modal.Title>Inserisci nuova esperienza</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-        <Form.Group className="mb-3">
-              <Form.Label>Azienda</Form.Label>
-              <Form.Control
-                name="company"
-                type="text"
-                placeholder="Inserisci azienda..."
-                onChange={handleCommentChange}
-              />
-            </Form.Group>
+          <Form.Group className='mb-3'>
+            <Form.Label>Azienda</Form.Label>
+            <Form.Control
+              name='company'
+              type='text'
+              placeholder='Inserisci azienda...'
+              onChange={handleCommentChange}
+            />
+          </Form.Group>
           <Form>
             {/* Campi del form per i dettagli dell'esperienza */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Ruolo</Form.Label>
               <Form.Control
-                name="role"
-                type="text"
-                placeholder="Inserisci ruolo..."
+                name='role'
+                type='text'
+                placeholder='Inserisci ruolo...'
                 autoFocus
                 onChange={handleCommentChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Data inizio</Form.Label>
               <Form.Control
-                name="startDate"
-                type="date"
-                placeholder="Data inizio"
+                name='startDate'
+                type='date'
+                placeholder='Data inizio'
                 onChange={handleCommentChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Data fine</Form.Label>
               <Form.Control
-                name="endDate"
-                type="date"
-                placeholder="Data fine"
+                name='endDate'
+                type='date'
+                placeholder='Data fine'
                 onChange={handleCommentChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Descrizione</Form.Label>
               <Form.Control
-                name="description"
-                type="text"
-                placeholder="Descrivi la tua esperienza..."
+                name='description'
+                type='text'
+                placeholder='Descrivi la tua esperienza...'
                 onChange={handleCommentChange}
               />
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Area</Form.Label>
               <Form.Control
-                name="area"
-                type="text"
-                placeholder="Inserisci zona..."
+                name='area'
+                type='text'
+                placeholder='Inserisci zona...'
                 onChange={handleCommentChange}
               />
             </Form.Group>
@@ -144,17 +144,19 @@ function AddExperience({ authorLogin, fetchExperiences }) {
         </Modal.Body>
         <Modal.Footer>
           {/* Pulsante per chiudere il modal */}
-          <button 
-            variant="secondary"
+          <button
+            variant='secondary'
             className='btn__altro'
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Chiudi
           </button>
           {/* Pulsante per inviare i dati dell'esperienza */}
-          <button 
+          <button
             variant='outline-primary'
             className='add__btn'
-            onClick={sendComment}>
+            onClick={sendComment}
+          >
             Aggiungi Esperienza
           </button>
         </Modal.Footer>

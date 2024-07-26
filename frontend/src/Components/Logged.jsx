@@ -4,10 +4,12 @@ import { useNavigate } from 'react-router-dom';
 import fetchWithAuth from '../services/fetchWithAuth';
 import { Image, Button, NavLink, NavDropdown } from 'react-bootstrap';
 import './logged.css';
-import {AuthContext} from "../Context/AuthContext"
+import {AuthContext} from '../Context/AuthContext'
 
 
 export default function Logged() {
+
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
 
   const { authorLogin, setAuthorLogin } = useContext(AuthContext);
   const { isLoggedIn, setIsLoggedIn } = useContext(AuthContext);
@@ -53,7 +55,7 @@ export default function Logged() {
     const fetchAuthor = async () => {
       try {
         // Richiedi i dati dell'autore utilizzando il token di autenticazione
-        const userData = await fetchWithAuth('http://localhost:5000/auth/me');
+        const userData = await fetchWithAuth(`${API_URL}/auth/me`);
         await  setAuthorLogin(userData); // Aggiorna il contesto dell'autore con i dati ricevuti
       } catch (error) {
         // Se c'è un errore nel recupero dei dati, mostra un errore e reindirizza alla pagina di login
@@ -76,11 +78,10 @@ export default function Logged() {
     window.dispatchEvent(new Event('storage')); // Notifica ad altri ascoltatori che il logout è avvenuto
   };
 
-
   return (
     <div className='d-column justify-content-center align-items-center'>
       <div className='d-flex justify-content-center align-items-center gap-3'>
-          {/* {isLoggedIn ? (<Image src={authorLogin.avatar} roundedCircle className='imgprofile' />) : (<Image src="https://plus.unsplash.com/premium_photo-1677252438425-e4125f74fbbe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D" roundedCircle className='imgprofile' />) } */}
+          {/* {isLoggedIn ? (<Image src={authorLogin.avatar} roundedCircle className='imgprofile' />) : (<Image src='https://plus.unsplash.com/premium_photo-1677252438425-e4125f74fbbe?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D' roundedCircle className='imgprofile' />) } */}
       
         <NavDropdown.Item  
         variant= {isLoggedIn ? 'outline-danger' : 'outline-secondary'}

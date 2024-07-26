@@ -13,7 +13,7 @@ function Resources() {
             {/* Indicazione di visibilità privata */}
             <p className='my-0 connections text-muted'> <i className='fa-solid fa-eye'></i>solo per te</p>
             
-            {/* Sezione "La mia rete" */}
+            {/* Sezione 'La mia rete' */}
             <div className='d-flex gap-2'>
               <i className='fa-solid fa-user-group'></i>
               <div>
@@ -25,7 +25,7 @@ function Resources() {
             {/* Linea divisoria */}
             <div className='divider_line'></div>
             
-            {/* Sezione "Elementi salvati" */}
+            {/* Sezione 'Elementi salvati' */}
             <div className='d-flex gap-2 mt-4'>
               <i className='fa-solid fa-bookmark'></i>
               <div>

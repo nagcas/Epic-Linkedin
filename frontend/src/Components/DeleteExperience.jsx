@@ -1,10 +1,13 @@
-import { useState } from "react";
-import { Modal } from "react-bootstrap";
-import fetchWithAuth from "../services/fetchWithAuth";
+import { useState } from 'react';
+import { Modal } from 'react-bootstrap';
+import fetchWithAuth from '../services/fetchWithAuth';
+
+
 // Componente per eliminare un'esperienza lavorativa
-function DeleteExperience({authorLogin, experience, fetchExperiences}) {
+function DeleteExperience({ authorLogin, experience, fetchExperiences }) {
   // URL per l'API di eliminazione dell'esperienza
-  const url = `http://localhost:5000/profile/${authorLogin._id}/experiences/${experience._id}`;
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  const url = `${API_URL}/profile/${authorLogin._id}/experiences/${experience._id}`;
 
   // Stato per controllare la visibilità del modal
   const [show, setShow] = useState(false);
@@ -14,28 +17,27 @@ function DeleteExperience({authorLogin, experience, fetchExperiences}) {
   const handleShow = () => setShow(true);
 
   // Token di autenticazione per l'API
- //  const Token = process.env.TOKEN;
+  //  const Token = process.env.TOKEN;
 
   // Funzione per gestire l'eliminazione dell'esperienza
   const handleElimina = async () => {
     try {
-        await fetchWithAuth(url, {
+      await fetchWithAuth(url, {
         method: 'DELETE',
       });
-        handleClose();
-        await fetchExperiences();
-       
+      handleClose();
+      await fetchExperiences();
     } catch (error) {
       console.error('Errore durante l\'eliminazione:', error);
       // Qui puoi aggiungere la gestione dell'errore, come mostrare un messaggio all'utente
     }
   };
 
-  return(
+  return (
     <>
       {/* Pulsante per aprire il modal di conferma eliminazione */}
-      <button 
-        variant='outline-secondary' 
+      <button
+        variant='outline-secondary'
         className='btn__altro mx-1 mt-3'
         onClick={handleShow}
       >
@@ -52,23 +54,25 @@ function DeleteExperience({authorLogin, experience, fetchExperiences}) {
         </Modal.Body>
         <Modal.Footer>
           {/* Pulsante per chiudere il modal */}
-          <button 
-            variant="secondary"
+          <button
+            variant='secondary'
             className='btn__altro'
-            onClick={handleClose}>
+            onClick={handleClose}
+          >
             Chiudi
           </button>
           {/* Pulsante per confermare l'eliminazione */}
-          <button 
+          <button
             variant='outline-primary'
             className='add__btn'
-            onClick={handleElimina}>
+            onClick={handleElimina}
+          >
             Elimina
           </button>
         </Modal.Footer>
       </Modal>
     </>
   );
-};
+}
 
 export default DeleteExperience;

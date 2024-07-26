@@ -1,11 +1,16 @@
 // Importa i componenti Form e Modal da react-bootstrap
-import { Form, Modal } from "react-bootstrap";
+import { Form, Modal } from 'react-bootstrap';
 // Importa le funzioni useState e useEffect da React
-import { useState, useEffect } from "react";
-import fetchWithAuth from "../services/fetchWithAuth";
+import { useState, useEffect } from 'react';
+import fetchWithAuth from '../services/fetchWithAuth';
+
+
 function UpdateProfile({ authorLogin, onProfileUpdate }) {
+  
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  
   // Stampa il profilo attuale nella console
-  console.log("Il mio profilo: ", authorLogin);
+  console.log('Il mio profilo: ', authorLogin);
   if (!authorLogin) {
     return null;
   }
@@ -13,17 +18,17 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
   // Recupera il token di autorizzazione dalle variabili d'ambiente
   // const Token = process.env.TOKEN;
   // URL dell'API per aggiornare il profilo
-  const url = `http://localhost:5000/profile/${authorLogin._id}`;
+  const url = `${API_URL}/profile/${authorLogin._id}`;
   // Definizione degli stati locali
   const [show, setShow] = useState(false); // Stato per controllare la visualizzazione del modal
   const [formDataProfile, setFormDataProfile] = useState({
-    name: "",
-    surname: "",
-    email: "",
-    username: "",
-    area: "",
-    title: "",
-    bio: "",
+    name: '',
+    surname: '',
+    email: '',
+    username: '',
+    area: '',
+    title: '',
+    bio: '',
   
   });
   const [image, setImage] = useState(null);
@@ -32,19 +37,16 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
   useEffect(() => {
     if (authorLogin) {
       setFormDataProfile({
-        name: authorLogin.name || "",
-        surname: authorLogin.surname || "",
-        email: authorLogin.email || "",
-        username: authorLogin.username || "",
-        area: authorLogin.area || "",
-        title: authorLogin.title || "",
-        bio: authorLogin.bio || "",
+        name: authorLogin.name || '',
+        surname: authorLogin.surname || '',
+        email: authorLogin.email || '',
+        username: authorLogin.username || '',
+        area: authorLogin.area || '',
+        title: authorLogin.title || '',
+        bio: authorLogin.bio || '',
       });
     }
   }, [authorLogin]);
-
-
-
 
 
   // Funzione per chiudere il modal
@@ -84,14 +86,13 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
       formData.append('image', image);
     }
   
-
     if (!url) {
-      console.error("URL non valido per l'aggiornamento del profilo");
+      console.error('URL non valido per l\'aggiornamento del profilo');
       return;
     }
     try {
       const updatedProfile = await fetchWithAuth(url, {
-        method: "PATCH",    
+        method: 'PATCH',    
         body: formData,
       });
 
@@ -100,7 +101,7 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
 
       setFormDataProfile(updatedProfile);
     } catch (error) {
-      console.error("Errore durante l'aggiornamento del profilo:", error);
+      console.error('Errore durante l\'aggiornamento del profilo:', error);
       // Qui puoi aggiungere la gestione dell'errore, come mostrare un messaggio all'utente
     } finally {
       handleClose(); // Chiude il modal
@@ -111,97 +112,97 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
     <>
       {/* Bottone per aprire il modal */}
       <button
-        variant="primary"
-        className="upgrade__profile p-0"
+        variant='primary'
+        className='upgrade__profile p-0'
         onClick={handleShow}
       >
-        <i className="fa-solid fa-pen"></i>
+        <i className='fa-solid fa-pen'></i>
       </button>
 
       {/* Modal per aggiornare il profilo */}
-      <Modal size="lg" show={show} onHide={handleClose}>
+      <Modal size='lg' show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Aggiorna Profilo Utente</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             {/* Campo Nome */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Nome</Form.Label>
               <Form.Control
-                type="text"
-                name="name"
+                type='text'
+                name='name'
                 value={formDataProfile.name}
                 onChange={handleProfileChange}
                 autoFocus
               />
             </Form.Group>
             {/* Campo Cognome */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Cognome</Form.Label>
               <Form.Control
-                type="text"
-                name="surname"
+                type='text'
+                name='surname'
                 value={formDataProfile.surname}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Email */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Email</Form.Label>
               <Form.Control
-                type="email"
-                name="email"
+                type='email'
+                name='email'
                 value={formDataProfile.email}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Username */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Username</Form.Label>
               <Form.Control
-                type="text"
-                name="username"
+                type='text'
+                name='username'
                 value={formDataProfile.username}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Luogo */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Luogo</Form.Label>
               <Form.Control
-                type="text"
-                name="area"
+                type='text'
+                name='area'
                 value={formDataProfile.area}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Titolo */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Titolo</Form.Label>
               <Form.Control
-                type="text"
-                name="title"
+                type='text'
+                name='title'
                 value={formDataProfile.title}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Biografia */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Biografia</Form.Label>
               <Form.Control
-                type="text"
-                name="bio"
+                type='text'
+                name='bio'
                 value={formDataProfile.bio}
                 onChange={handleProfileChange}
               />
             </Form.Group>
             {/* Campo Immagine Profilo */}
-            <Form.Group className="mb-3">
+            <Form.Group className='mb-3'>
               <Form.Label>Immagine profilo</Form.Label>
               <Form.Control
-                type="file"
-                name="image"
+                type='file'
+                name='image'
                 onChange={handleFileChange}
               />
             </Form.Group>
@@ -210,16 +211,16 @@ function UpdateProfile({ authorLogin, onProfileUpdate }) {
         <Modal.Footer>
           {/* Bottone per chiudere il modal */}
           <button
-            variant="secondary"
-            className="btn__altro"
+            variant='secondary'
+            className='btn__altro'
             onClick={handleClose}
           >
             Chiudi
           </button>
           {/* Bottone per aggiornare il profilo */}
           <button
-            variant="outline-primary"
-            className="add__btn"
+            variant='outline-primary'
+            className='add__btn'
             onClick={handleUpdateProfile}
           >
             Aggiorna Profilo

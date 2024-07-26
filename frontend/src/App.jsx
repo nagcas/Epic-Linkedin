@@ -2,8 +2,6 @@ import './App.css';
 import Navbar from './Components/Navbar';
 import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-/*
-import '@fortawesome/fontawesome-free/css/all.min.css';*/
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import OtherProfile from './Pages/OtherProfile';
@@ -35,11 +33,11 @@ function App() {
         <Navbar />
         <Routes>
             <Route 
-              path="/" 
+              path='/' 
               element={<Login />} 
             />
           <Route
-              path="/profile/:_id"
+              path='/profile/:_id'
               element={<OtherProfile />}
             />
             <Route
@@ -47,11 +45,11 @@ function App() {
             element={<NotFound/>}
           />
            <Route
-            path="/register"
+            path='/register'
             element={<Register />}
           />
           <Route 
-           path="/home" 
+           path='/home' 
            element={<Home />} 
           />
           </Routes>
@@ -61,4 +59,4 @@ function App() {
   );
 } 
 
-export default App
+export default App;

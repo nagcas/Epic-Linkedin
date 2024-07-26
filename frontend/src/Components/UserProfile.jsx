@@ -23,11 +23,13 @@ function UserProfile() {
   // console.log(params.user); // Debug: stampa i parametri dell'utente
 
   // URL dell'API per la lettura dei profili
-  const url = 'http://localhost:5000/profile/';
+
+  const API_URL = import.meta.env.API_VITE || 'http://localhost:5000';
+  //const url = 'http://localhost:5000/profile/';
 
   // Recupero il token di autorizzazione
- // const Token = process.env.TOKEN;
-  
+  // const Token = process.env.TOKEN;
+
   // Definizione degli stati locali
   const [profile, setProfile] = useState([]);
   const { authorLogin, setAuthorLogin, isLoggedIn } = useContext(AuthContext);
@@ -36,38 +38,43 @@ function UserProfile() {
 
   useEffect(() => {
     const fetchData = async () => {
-        try {
-            setIsEnableSpinner(true);
-            const response = await fetchWithAuth(url + params._id, {
-      
-            });
-            
-            // console.log(data); // Debug: stampa i dati ricevuti
-            setProfile(response);
-            setIsError(false);
-        } catch (error) {
-            console.error('Error loading...', error);
-            setIsError(true);
-        } finally {
-            setIsEnableSpinner(false);
-        }
+      try {
+        setIsEnableSpinner(true);
+        const response = await fetchWithAuth(`${API_URL}/profile/` + params._id, {});
+
+        // console.log(data); // Debug: stampa i dati ricevuti
+        setProfile(response);
+        setIsError(false);
+      } catch (error) {
+        console.error('Error loading...', error);
+        setIsError(true);
+      } finally {
+        setIsEnableSpinner(false);
+      }
     };
 
     fetchData();
-}, [params._id]);
+  }, [params._id]);
 
-const handleProfileUpdate = (updatedProfile) => {
-  setAuthorLogin((prevState) => ({ ...prevState, ...updatedProfile }));
-};
+  const handleProfileUpdate = (updatedProfile) => {
+    setAuthorLogin((prevState) => ({ ...prevState, ...updatedProfile }));
+  };
 
-
-  return ( 
+  return (
     <>
       {/* Mostra lo spinner di caricamento se isEnableSpinner è true */}
-      {isEnableSpinner && <div className='text-center mt-5'><Spinner animation='grow' /></div>}
+      {isEnableSpinner && (
+        <div className='text-center mt-5'>
+          <Spinner animation='grow' />
+        </div>
+      )}
       {/* Mostra un messaggio di errore se isError è true */}
-      {isError && <div className='text-center mt-5'><Alert variant='danger'>Error loading...</Alert></div>}
-      
+      {isError && (
+        <div className='text-center mt-5'>
+          <Alert variant='danger'>Error loading...</Alert>
+        </div>
+      )}
+
       <Container className='pb-2 border-0 content__card content__profile'>
         {/* Sezione background del profilo */}
         <Row className='profile__bg'>
@@ -80,7 +87,7 @@ const handleProfileUpdate = (updatedProfile) => {
         <Row className='profile__image'>
           <img className='image__user' src={profile.image} alt={profile.name} />
         </Row>
-        <div className="d-flex justify-content-end">
+        <div className='d-flex justify-content-end'>
           {/* Componente per aggiornare il profilo */}
           {isLoggedIn && profile.username === authorLogin.username && (
             <UpdateProfile
@@ -90,7 +97,7 @@ const handleProfileUpdate = (updatedProfile) => {
           )}
           {/* <button className='upgrade__profile p-0'><i className='fa-solid fa-pen'></i></button> */}
         </div>
-        
+
         {/* Dettagli dell'utente */}
         <Row className='user__detail mt-5'>
           <Col xs={12} md={8}>
@@ -98,25 +105,21 @@ const handleProfileUpdate = (updatedProfile) => {
               {profile.name} {profile.surname}
             </h4>
             <p className='my-0 occupation'>{profile.title}</p>
-            <p className='my-0 location text-muted'>{profile.area} • <span className='connections'>Informazioni di contatto</span></p>
-
-            <p className='my-2 connections'>
-              5 collegamenti
+            <p className='my-0 location text-muted'>
+              {profile.area} •{' '}
+              <span className='connections'>Informazioni di contatto</span>
             </p>
+
+            <p className='my-2 connections'>5 collegamenti</p>
             <div className='d-column justify-content-start'>
-              <button 
-                className='profile__button open__to__btn mx-3 mt-3'
-              >
-                <i className="fa-solid fa-user-plus"></i> Collegati
+              <button className='profile__button open__to__btn mx-3 mt-3'>
+                <i className='fa-solid fa-user-plus'></i> Collegati
+              </button>
+              <button variant='outline-primary' className='add__btn mx-3 mt-3'>
+                <i className='fa-solid fa-paper-plane'></i> Messaggio
               </button>
               <button
-                variant='outline-primary'
-                className='add__btn mx-3 mt-3'
-              >
-                <i className="fa-solid fa-paper-plane"></i> Messaggio
-              </button>
-              <button 
-                variant='outline-secondary' 
+                variant='outline-secondary'
                 className='btn__altro mx-3 mt-3'
               >
                 Altro
@@ -147,25 +150,25 @@ const handleProfileUpdate = (updatedProfile) => {
         </Row>
       </Container>
 
-      {/* Sezione "Consigliato per te" */}
+      {/* Sezione 'Consigliato per te' */}
       <Advised />
-      
-      {/* Sezione "Analisi" */}
+
+      {/* Sezione 'Analisi' */}
       <Analyses />
 
-      {/* Sezione "Risorse" */}
+      {/* Sezione 'Risorse' */}
       <Resources />
-      
-      {/* Sezione "Attività" */}
+
+      {/* Sezione 'Attività' */}
       <Activity />
 
-      {/* Sezione "Esperienze" */}
+      {/* Sezione 'Esperienze' */}
       <Experiences profile={profile} />
 
-      {/* Sezione "Competenze" */}
+      {/* Sezione 'Competenze' */}
       <Skills />
-    </> 
+    </>
   );
-};
+}
 
 export default UserProfile;
